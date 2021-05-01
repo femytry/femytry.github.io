@@ -1,9 +1,0 @@
-[{
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.teamelite.myapplication",
-      "sha256_cert_fingerprints":
-      ["8A:8A:1E:F8:61:05:EF:80:1B:B8:74:FC:FE:16:9C:1C:B6:DF:72:90:C2:8C:AF:C1:C5:B4:F6:18:EC:FE:E8:CF"]
-    }
-  }]
