@@ -18,9 +18,7 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   final PhoneController _phoneController = Get.find();
-  final List<Widget> _phoneContent = [
-    PhoneContentAvatar(), PhoneContentMenu()
-  ];
+  final List<Widget> _phoneContent = [PhoneContentAvatar(), PhoneContentMenu()];
 
   @override
   void initState() {
@@ -31,103 +29,75 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: ResponsiveWidget(
-            largeScreen: Wrap(
-              direction: Axis.horizontal,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: _phone(),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hi there! Meet me Femy.",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
+        child: ResponsiveWidget(
+          largeScreen: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Center(
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: _phone(),
                       ),
-                    ),
-                    Text(
-                      "If you want to know more about me, please click the app.",
-                    ),
-                    Container(
-                      constraints: BoxConstraints(maxWidth: 200),
-                      child: Wrap(
-                        direction: Axis.horizontal,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0, right: 8.0, bottom: 8.0),
-                            child: InkWell(child: SvgPicture.asset('assets/svg/linkedin.svg', width: 30,), onTap: () {
-                              js.context.callMethod('open', ['https://www.linkedin.com/in/femy-try/']);
-                            },),
+                          Text(
+                            "Hi there! Meet me Femy.",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(child: SvgPicture.asset('assets/svg/github.svg', width: 30,), onTap: () {
-                              js.context.callMethod('open', ['https://github.com/femytry']);
-                            },),
+                          Text(
+                            "If you want to know more about me, please click the app.",
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(child: SvgPicture.asset('assets/svg/instagram.svg', width: 30,), onTap: () {
-                              js.context.callMethod('open', ['https://www.instagram.com/tryfemy']);
-                            },),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(child: SvgPicture.asset('assets/svg/facebook.svg', width: 30,), onTap: () {
-                              js.context.callMethod('open', ['https://facebook.com/femy.t.kurnia/']);
-                            },),
-                          ),
+                          Container(
+                            constraints: BoxConstraints(maxWidth: 200),
+                            child: _social(),
+                          )
                         ],
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ],
-            ),
-            smallScreen: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Text("© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web", textAlign: TextAlign.center, style: TextStyle(fontSize: 12),),
+              SizedBox(height: 16,)
+            ],
+          ),
+          smallScreen: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               children: [
-                _phone(),
-                Text(
-                  "If you want to know more about me, please click the app.",
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _phone(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "If you want to know more about me, please click the app.",
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      _social()
+                    ],
+                  ),
                 ),
-                Wrap(
-                  direction: Axis.horizontal,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 8.0, bottom: 8.0),
-                      child: InkWell(child: SvgPicture.asset('assets/svg/linkedin.svg', width: 30,), onTap: () {
-                        js.context.callMethod('open', ['https://www.linkedin.com/in/femy-try/']);
-                      },),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(child: SvgPicture.asset('assets/svg/github.svg', width: 30,), onTap: () {
-                        js.context.callMethod('open', ['https://github.com/femytry']);
-                      },),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(child: SvgPicture.asset('assets/svg/instagram.svg', width: 30,), onTap: () {
-                        js.context.callMethod('open', ['https://www.instagram.com/tryfemy']);
-                      },),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(child: SvgPicture.asset('assets/svg/facebook.svg', width: 30,), onTap: () {
-                        js.context.callMethod('open', ['https://facebook.com/femy.t.kurnia/']);
-                      },),
-                    ),
-                  ],
-                ),
+                Center(child: Text("© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web", textAlign: TextAlign.center, style: TextStyle(fontSize: 12),))
               ],
             ),
           ),
@@ -137,14 +107,71 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Widget _phone() => PhoneWidget(
-    content: Obx(() {
-      var w = _phoneController.phoneContent.value;
-      return AnimatedSwitcher(
-        duration: Duration(seconds: 1),
-        child: _phoneContent[w],
-        switchInCurve: Curves.easeInBack,
-        switchOutCurve: Curves.easeInOutBack,
+        content: Obx(() {
+          var w = _phoneController.phoneContent.value;
+          return AnimatedSwitcher(
+            duration: Duration(seconds: 1),
+            child: _phoneContent[w],
+            switchInCurve: Curves.easeInBack,
+            switchOutCurve: Curves.easeInOutBack,
+          );
+        }),
       );
-    }),
-  );
+
+  Widget _social() => Wrap(
+        direction: Axis.horizontal,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, right: 8.0, bottom: 8.0),
+            child: InkWell(
+              child: SvgPicture.asset(
+                'assets/svg/linkedin.svg',
+                width: 30,
+              ),
+              onTap: () {
+                js.context.callMethod(
+                    'open', ['https://www.linkedin.com/in/femy-try/']);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              child: SvgPicture.asset(
+                'assets/svg/github.svg',
+                width: 30,
+              ),
+              onTap: () {
+                js.context.callMethod('open', ['https://github.com/femytry']);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              child: SvgPicture.asset(
+                'assets/svg/instagram.svg',
+                width: 30,
+              ),
+              onTap: () {
+                js.context
+                    .callMethod('open', ['https://www.instagram.com/tryfemy']);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              child: SvgPicture.asset(
+                'assets/svg/facebook.svg',
+                width: 30,
+              ),
+              onTap: () {
+                js.context.callMethod(
+                    'open', ['https://facebook.com/femy.t.kurnia/']);
+              },
+            ),
+          ),
+        ],
+      );
 }

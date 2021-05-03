@@ -4,6 +4,7 @@ import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/controllers/phone_controller.dart';
+import 'package:portfolio/views/pages/profile/profile_page.dart';
 
 class PhoneContentAvatar extends StatefulWidget {
   PhoneContentAvatar({Key? key}) : super(key: key);
@@ -74,7 +75,9 @@ class PhoneContentMenu extends StatelessWidget {
           Container(
             width: double.infinity,
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(()=> ProfilePage());
+              },
               icon: Icon(Icons.person_rounded),
               label: Text('Profile'),
             ),
@@ -85,7 +88,7 @@ class PhoneContentMenu extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: () {},
               icon: Icon(Icons.work_rounded),
-              label: Text('Work'),
+              label: Text('Projects'),
             ),
           ),
           SizedBox(height: 10,),
