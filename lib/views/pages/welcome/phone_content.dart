@@ -3,6 +3,7 @@ import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/controllers/page_route_controller.dart';
 import 'package:portfolio/controllers/phone_controller.dart';
 import 'package:portfolio/views/pages/profile/profile_page.dart';
 
@@ -62,7 +63,7 @@ class _PhoneContentAvatarState extends State<PhoneContentAvatar>
   }
 }
 
-class PhoneContentMenu extends StatelessWidget {
+class PhoneContentMenu extends GetView<PageRouteController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,9 +82,7 @@ class PhoneContentMenu extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProfilePage(),
-                ));
+               controller.switchPage('/profile');
               },
               icon: Icon(Icons.person_rounded),
               label: Text('Profile'),
@@ -95,7 +94,9 @@ class PhoneContentMenu extends StatelessWidget {
           Container(
             width: double.infinity,
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                controller.switchPage('/works');
+              },
               icon: Icon(Icons.work_rounded),
               label: Text('Projects'),
             ),

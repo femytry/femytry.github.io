@@ -2,13 +2,27 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/controllers/page_route_controller.dart';
 import 'package:portfolio/views/widgets/responsive_widget.dart';
 
 class ProfilePage extends StatelessWidget {
+
+  final PageRouteController _pageRouteController = Get.find();
+
+  Future<bool> onWillPop(){
+    if (_pageRouteController.bodyRoute.length > 1) {
+      _pageRouteController.backBody();
+    } else{
+      _pageRouteController.backPage();
+    }
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+    return WillPopScope(
+      onWillPop: () async => onWillPop(),
+      child: SafeArea(
         child: ResponsiveWidget(
           largeScreen: SingleChildScrollView(
             child: Padding(
@@ -16,7 +30,9 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Card(
                     child: Container(
                       width: double.infinity,
@@ -29,19 +45,28 @@ class ProfilePage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: CircleAvatar(
-                              backgroundImage: AssetImage('assets/img/profile.jpg'),
+                              backgroundImage:
+                                  AssetImage('assets/img/profile.jpg'),
                               radius: 100,
                             ),
                           ),
                           Container(
-                            constraints: BoxConstraints(maxWidth: 500, minWidth: 200),
+                            constraints:
+                                BoxConstraints(maxWidth: 500, minWidth: 500),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Summary', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),),
-                                SizedBox(height: 10,),
-                                Text("Hi, I'm Femy Try Kurnia. App Developer who focused on mobile app development. Have more than 2 years professional experience in the same field. Began with android native app development using java/kotlin and now using flutter to develop multiplatform app."),
+                                Text(
+                                  'Summary',
+                                  style: TextStyle(
+                                      fontSize: 24, fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                    "Hi, I'm Femy Try Kurnia. App Developer who focused on mobile app development. Have more than 2 years professional experience in the same field. Began with android native app development using java/kotlin and now using flutter to develop multiplatform app."),
                               ],
                             ),
                           )
@@ -49,7 +74,9 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Card(
                     child: Container(
                       width: double.infinity,
@@ -57,26 +84,57 @@ class ProfilePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Works', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),),
-                          SizedBox(height: 20,),
-                          workContainer('Mobile App Developer', 'Team Elite(Freelance)', 'Sept 2019', 'Present', 'Bandung, Indonesia'),
-                          SizedBox(height: 10,),
+                          Text(
+                            'Works',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          workContainer(
+                              'Mobile App Developer',
+                              'Team Elite(Freelance)',
+                              'Sept 2019',
+                              'Present',
+                              'Bandung, Indonesia'),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Divider(
                             thickness: 2,
                           ),
-                          SizedBox(height: 10,),
-                          workContainer('Android App Developer', 'Mahkota Digital Indonesia', 'Nov 2019', 'Aug 2020', 'Bandung, Indonesia'),
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          workContainer(
+                              'Android App Developer',
+                              'Mahkota Digital Indonesia',
+                              'Nov 2019',
+                              'Aug 2020',
+                              'Bandung, Indonesia'),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Divider(
                             thickness: 2,
                           ),
-                          SizedBox(height: 10,),
-                          workContainer('Android App Developer', 'Asia Digital Indonesia', 'Mar 2019', 'Oct 2019', 'Bandung, Indonesia'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          workContainer(
+                              'Android App Developer',
+                              'Asia Digital Indonesia',
+                              'Mar 2019',
+                              'Oct 2019',
+                              'Bandung, Indonesia'),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Card(
                     child: Container(
                       width: double.infinity,
@@ -84,16 +142,37 @@ class ProfilePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Education', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),),
-                          SizedBox(height: 20,),
-                          educationContainer('Telkom University', 'Associate Degree(Diploma 3)', 'Software Engineering', '2015', '2018', 'Bandung, Indonesia')
+                          Text(
+                            'Education',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          educationContainer(
+                              'Telkom University',
+                              'Associate Degree(Diploma 3)',
+                              'Software Engineering',
+                              '2015',
+                              '2018',
+                              'Bandung, Indonesia')
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
-                  Center(child: Text("© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web", textAlign: TextAlign.center, style: TextStyle(fontSize: 12),)),
-                  SizedBox(height: 16,)
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                      child: Text(
+                    "© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 12),
+                  )),
+                  SizedBox(
+                    height: 16,
+                  )
                 ],
               ),
             ),
@@ -103,29 +182,41 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget workContainer(String title, String company, String from, String to, String location){
+  Widget workContainer(
+      String title, String company, String from, String to, String location) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
-        Text(company, style: TextStyle(fontWeight: FontWeight.w600),),
+        Text(
+          title,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        ),
+        Text(
+          company,
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
         Text('$from - $to'),
         Text(location)
       ],
     );
   }
 
-  Widget educationContainer(String school, String degree, String major, String from, String to, String location) {
+  Widget educationContainer(String school, String degree, String major,
+      String from, String to, String location) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(school, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
-        Text('$degree - $major', style: TextStyle(fontWeight: FontWeight.w600),),
+        Text(
+          school,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        ),
+        Text(
+          '$degree - $major',
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
         Text('$from - $to'),
         Text(location)
       ],
     );
   }
 }
-
-

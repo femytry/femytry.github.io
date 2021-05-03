@@ -4,6 +4,7 @@ import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/controllers/page_route_controller.dart';
 import 'package:portfolio/controllers/phone_controller.dart';
 import 'package:portfolio/views/pages/welcome/phone_content.dart';
 import 'package:portfolio/views/widgets/phone_widget.dart';
@@ -18,6 +19,7 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   final PhoneController _phoneController = Get.find();
+  final PageRouteController _pageRouteController = Get.find();
   final List<Widget> _phoneContent = [PhoneContentAvatar(), PhoneContentMenu()];
 
   @override
@@ -25,80 +27,88 @@ class _WelcomePageState extends State<WelcomePage> {
     super.initState();
   }
 
+  Future<bool> onWillPop(){
+    _pageRouteController.backPage();
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ResponsiveWidget(
-          largeScreen: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Center(
-                  child: Wrap(
-                    direction: Axis.horizontal,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: _phone(),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Hi there! Meet me Femy.",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            "If you want to know more about me, please click the app.",
-                          ),
-                          Container(
-                            constraints: BoxConstraints(maxWidth: 200),
-                            child: _social(),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Text("© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web", textAlign: TextAlign.center, style: TextStyle(fontSize: 12),),
-              SizedBox(height: 16,)
-            ],
-          ),
-          smallScreen: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
+    return WillPopScope(
+      onWillPop: () => onWillPop(),
+      child: Scaffold(
+        body: SafeArea(
+          child: ResponsiveWidget(
+            largeScreen: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _phone(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "If you want to know more about me, please click the app.",
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      _social()
-                    ],
+                  child: Center(
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: _phone(),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hi there! Meet me Femy.",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              "If you want to know more about me, please click the app.",
+                            ),
+                            Container(
+                              constraints: BoxConstraints(maxWidth: 200),
+                              child: _social(),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Center(child: Text("© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web", textAlign: TextAlign.center, style: TextStyle(fontSize: 12),))
+                Text("© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web", textAlign: TextAlign.center, style: TextStyle(fontSize: 12),),
+                SizedBox(height: 16,)
               ],
+            ),
+            smallScreen: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _phone(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "If you want to know more about me, please click the app.",
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        _social()
+                      ],
+                    ),
+                  ),
+                  Center(child: Text("© ${DateTime.now().year} Femy Try Kurnia | Hosted on Github Pages | Made using Flutter Web", textAlign: TextAlign.center, style: TextStyle(fontSize: 12),))
+                ],
+              ),
             ),
           ),
         ),
