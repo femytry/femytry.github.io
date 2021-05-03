@@ -3,15 +3,15 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "8a535b89018bb4def14948a24e168670",
+  "assets/AssetManifest.json": "f7c2cd9799d6b70123eb71cc802c4feb",
 "assets/assets/fonts/Montserrat-Bold.ttf": "ade91f473255991f410f61857696434b",
 "assets/assets/fonts/Montserrat-ExtraBold.ttf": "19ba7aa52a78c3896558ac1c0a5fb4c7",
 "assets/assets/fonts/Montserrat-Light.ttf": "409c7f79a42e56c785f50ed37535f0be",
 "assets/assets/fonts/Montserrat-Medium.ttf": "c8b6e083af3f94009801989c3739425e",
 "assets/assets/fonts/Montserrat-Regular.ttf": "ee6539921d713482b8ccd4d0d23961bb",
 "assets/assets/fonts/Montserrat-SemiBold.ttf": "c641dbee1d75892e4d88bdc31560c91b",
-"assets/assets/img/avatar_fm.jpg": "bf779d58fe9f1f0b7a8a84d5a941f34b",
 "assets/assets/img/developer_avatar.png": "2ba6b440ff7f3d57f05b289299992175",
+"assets/assets/img/profile.jpg": "10ca93b86c172cba08c5fe2b8f32ceea",
 "assets/assets/svg/facebook.svg": "d1ac35895ee9029b5218f669ea9f3400",
 "assets/assets/svg/github.svg": "1f33e75d7b7df995b1609f8573ac8c9b",
 "assets/assets/svg/instagram.svg": "bb026c4d996a5d563f7fceb5166175e1",
@@ -23,9 +23,9 @@ const RESOURCES = {
 "favicon.png": "573cca6a6c01afb3c299a43996106c70",
 "icons/Icon-192.png": "90f395702f76b46e7fe4d27b8efd16ea",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "6ca521661fd3334c8a7b06de55414142",
-"/": "6ca521661fd3334c8a7b06de55414142",
-"main.dart.js": "ec079ae6ee3ed38a2cf73952f044ba5a",
+"index.html": "4607075a5cc253ac9d2e9b56cf2e8adb",
+"/": "4607075a5cc253ac9d2e9b56cf2e8adb",
+"main.dart.js": "f08b892ad7365ff6fe772507b38213d2",
 "manifest.json": "470d9e4ee3dd06d87ba22aedec1df32d",
 "version.json": "426313f2f3133c2f20415344c4a22df3"
 };
