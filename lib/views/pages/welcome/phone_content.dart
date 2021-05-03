@@ -70,19 +70,28 @@ class PhoneContentMenu extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text('What you want to know about me?', style: TextStyle(fontSize: 20, fontWeight:  FontWeight.w600),),
-          SizedBox(height: 40,),
+          Text(
+            'What you want to know about me?',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          ),
+          SizedBox(
+            height: 40,
+          ),
           Container(
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () {
-                Get.to(()=> ProfilePage());
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ProfilePage(),
+                ));
               },
               icon: Icon(Icons.person_rounded),
               label: Text('Profile'),
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Container(
             width: double.infinity,
             child: ElevatedButton.icon(
@@ -91,7 +100,9 @@ class PhoneContentMenu extends StatelessWidget {
               label: Text('Projects'),
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Container(
             width: double.infinity,
             child: ElevatedButton.icon(
