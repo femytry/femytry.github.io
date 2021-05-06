@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
                           Center(
                             child: CircleAvatar(
                               backgroundImage:
-                                  AssetImage('assets/img/profile.jpg'),
+                                  AssetImage('assets/img/profile.png'),
                               radius: 100,
                             ),
                           ),
