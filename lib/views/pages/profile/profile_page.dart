@@ -2,31 +2,27 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/controllers/page_route_controller.dart';
+import 'package:portfolio/views/widgets/default_appbar.dart';
 import 'package:portfolio/views/widgets/responsive_widget.dart';
 
 class ProfilePage extends StatelessWidget {
-
-  final PageRouteController _pageRouteController = Get.find();
-
-  Future<bool> onWillPop(){
-    if (_pageRouteController.bodyRoute.length > 1) {
-      _pageRouteController.backBody();
-    } else{
-      _pageRouteController.backPage();
-    }
-    return Future.value(true);
-  }
+  static const String route = '/resume';
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => onWillPop(),
-      child: SafeArea(
+    double padding = Get.width * 0.1;
+    if (ResponsiveWidget.isLargeScreen()) {
+      padding = Get.width * 0.2;
+    }
+    return Scaffold(
+      appBar: ResponsiveWidget.isSmallScreen()
+          ? DefaultSmallAppbar("Femy Try Kurnia")
+          : DefaultLargeAppbar(),
+      body: SafeArea(
         child: ResponsiveWidget(
           largeScreen: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: (Get.width * 0.2)),
+              padding: EdgeInsets.symmetric(horizontal: padding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -37,39 +33,27 @@ class ProfilePage extends StatelessWidget {
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16.0),
-                      child: Wrap(
-                        direction: Axis.horizontal,
-                        alignment: WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          Center(
                             child: CircleAvatar(
                               backgroundImage:
                                   AssetImage('assets/img/profile.jpg'),
                               radius: 100,
                             ),
                           ),
-                          Container(
-                            constraints:
-                                BoxConstraints(maxWidth: 500, minWidth: 500),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Summary',
-                                  style: TextStyle(
-                                      fontSize: 24, fontWeight: FontWeight.w600),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                    "Hi, I'm Femy Try Kurnia. App Developer who focused on mobile app development. Have more than 2 years professional experience in the same field. Began with android native app development using java/kotlin and now using flutter to develop multiplatform app."),
-                              ],
-                            ),
-                          )
+                          Text(
+                            'Summary',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                              "Hi, I'm Femy Try Kurnia. App Developer who focused on mobile app development. Have more than 2 years professional experience in the same field. Began with android native app development using java/kotlin and now using flutter to develop multiplatform app."),
                         ],
                       ),
                     ),

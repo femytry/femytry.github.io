@@ -15,11 +15,11 @@ class ResponsiveWidget extends StatelessWidget {
   }) : super(key: key);
 
   static bool isSmallScreen(){
-    return Get.width < 800;
+    return Get.width < 640;
   }
 
   static bool isMediumScreen(){
-    return Get.width >= 800 && Get.width <= 1200;
+    return Get.width >= 640 && Get.width <= 1200;
   }
 
   static bool isLargeScreen(){
@@ -32,7 +32,7 @@ class ResponsiveWidget extends StatelessWidget {
         builder: (context, constraints) {
           if (constraints.maxWidth > 1200) {
             return largeScreen;
-          } else if(constraints.maxWidth <= 1200 && constraints.maxWidth >= 800){
+          } else if(constraints.maxWidth <= 1200 && constraints.maxWidth >= 640){
             return mediumScreen ?? largeScreen;
           } else{
             return smallScreen ?? largeScreen;

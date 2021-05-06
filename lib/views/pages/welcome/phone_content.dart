@@ -3,9 +3,9 @@ import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/controllers/page_route_controller.dart';
 import 'package:portfolio/controllers/phone_controller.dart';
 import 'package:portfolio/views/pages/profile/profile_page.dart';
+import 'package:portfolio/views/pages/works/works_page.dart';
 
 class PhoneContentAvatar extends StatefulWidget {
   PhoneContentAvatar({Key? key}) : super(key: key);
@@ -63,14 +63,21 @@ class _PhoneContentAvatarState extends State<PhoneContentAvatar>
   }
 }
 
-class PhoneContentMenu extends GetView<PageRouteController> {
+class PhoneContentMenu extends GetView<PhoneController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          InkWell(
+            child: Icon(Icons.chevron_left_rounded),
+            onTap: () {
+              controller.switchPhoneContent(0);
+            },
+          ),
           Text(
             'What you want to know about me?',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
@@ -82,7 +89,7 @@ class PhoneContentMenu extends GetView<PageRouteController> {
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () {
-               controller.switchPage('/profile');
+                Get.toNamed(ProfilePage.route);
               },
               icon: Icon(Icons.person_rounded),
               label: Text('Profile'),
@@ -95,7 +102,7 @@ class PhoneContentMenu extends GetView<PageRouteController> {
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () {
-                controller.switchPage('/works');
+                Get.toNamed(WorksPage.route);
               },
               icon: Icon(Icons.work_rounded),
               label: Text('Projects'),
